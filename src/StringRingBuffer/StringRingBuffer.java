@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-public class RingBuffer {
+public class StringRingBuffer {
 
     String[] data;
     int first;
@@ -13,7 +13,7 @@ public class RingBuffer {
     Semaphore occupied;
     ReentrantReadWriteLock lock;
 
-    public RingBuffer(int length){
+    public StringRingBuffer(int length){
         data = new String[length];
         first = last = 0;
         free = new Semaphore(length);
@@ -115,7 +115,7 @@ public class RingBuffer {
 
 
     public static void main(String[] args){
-        RingBuffer rb = new RingBuffer(5);
+        StringRingBuffer rb = new StringRingBuffer(5);
         Consumer c = rb.getConsumer();
         Producer p = rb.getProducer();
         c.start();
